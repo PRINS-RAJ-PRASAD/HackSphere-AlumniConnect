@@ -26,7 +26,7 @@ If you logged in as a student, your dashboard is your career command center:
 ### Step 3: The Alumni Experience 💼
 If you logged in as an alumni, you get a totally different workspace:
 1.  **Post an Opportunity:** Use the quick-form to post a referral opportunity for a job at your company. 
-2.  **Watch the Points Roll In:** Posting a job instantly awards you **+10 contribution points** via automated database triggers. 
+2.  **Watch the Points Roll In:** Posting a job instantly awards you **+20 contribution points** via automated database triggers. 
 3.  **Manage the Inbox:** When a student requests a referral, it pops up in your exclusive Inbox. Click "Approve" to send the referral and instantly earn **+50 contribution points**.
 4.  **Climb the Ranks:** Watch your name climb the Live Leaderboard as you give back to the college community!
 
