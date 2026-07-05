@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://hacksphere-alumniconnect.onrender.com";
 const nitjsrRegex = /^(\d{4})UG(CM|CS|EC|PI|EE|ME|CE|MM)(\d{3})@nitjsr\.ac\.in$/i;
 
 function showAlert(elementId, message, isSuccess = false) {

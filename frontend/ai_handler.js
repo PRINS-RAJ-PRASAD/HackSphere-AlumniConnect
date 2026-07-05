@@ -2,7 +2,7 @@
  * AlumniConnect AI Handler (Polished & Objectified UI Rendering Architecture)
  */
 
-const BACKEND_URL = "http://127.0.0.1:8000";
+const BACKEND_URL = "https://hacksphere-alumniconnect.onrender.com";
 let atsChartInstance = null; // Track chart instance to clear old graphs gracefully
 
 /**
