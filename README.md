@@ -4,22 +4,24 @@
 
 Hey there! 👋 Welcome to AlumniConnect. 
 
-We built this platform over the last 48 hours to solve a massive problem on campus: students struggle to get cold referrals, and alumni get spammed with untargeted requests. We wanted to build an ecosystem that makes networking frictionless, verified, and highly rewarding for everyone involved. 
+I built this platform over the last 48 hours to solve a massive problem on campus: students struggle to get cold referrals, and alumni get spammed with untargeted requests. I wanted to build an ecosystem that makes networking frictionless, verified, and highly rewarding for everyone involved. 
 
-Instead of a boring technical manual, let’s take a quick tour of how to actually use what we built!
+*Note: While I used AI as a copilot to help me speed up the coding process, the entire architecture, core logic, and problem-solving vision were built by me.*
+
+Instead of a boring technical manual, let’s take a quick tour of how to actually use what I built!
 
 ---
 
 ## 🗺️ How to Use the Platform (A Quick Tour)
 
 ### Step 1: The "Magic" Login
-We didn't want users fumbling with dropdown menus to select their roles. 
+I didn't want users fumbling with dropdown menus to select their roles. 
 *   Head to the login page and register using an official NIT JSR email (e.g., `2025UGCS034@nitjsr.ac.in`). 
-*   **What happens behind the scenes:** Our backend regex instantly reads your branch code (`CS`), maps it to your department, calculates your graduation year, and automatically routes you into a `Student` or `Alumni` workspace. 
+*   **What happens behind the scenes:** My backend regex instantly reads your branch code (`CS`), maps it to your department, calculates your graduation year, and automatically routes you into a `Student` or `Alumni` workspace. 
 
 ### Step 2: The Student Experience 🎓
 If you logged in as a student, your dashboard is your career command center:
-1.  **Meet Your AI Copilot:** Scroll down to the AI tools. Paste a target job description and upload a mock PDF resume. Our Gemini-powered AI will instantly generate an ATS match score (complete with a slick Chart.js visual) and give you a step-by-step upskilling roadmap.
+1.  **Meet Your AI Copilot:** Scroll down to the AI tools. Paste a target job description and upload a mock PDF resume. My Gemini-powered AI will instantly generate an ATS match score (complete with a slick Chart.js visual) and give you a step-by-step upskilling roadmap.
 2.  **Generate a Pitch:** Don't know how to message an alumni? Use the Referral Pitch Synth to let the AI draft a hyper-professional LinkedIn cold outreach message for you.
 3.  **Discover Alumni:** Use the massive Universal Search bar. Type "Google" or "Software Engineer" to instantly pull up visually stunning profile cards of verified alumni you can connect with.
 
@@ -34,7 +36,7 @@ If you logged in as an alumni, you get a totally different workspace:
 
 ## 🧠 The Brains Behind the Operation
 
-We wanted to make sure the best alumni get the most visibility. When students search for opportunities, we don't just list them randomly. We built a custom ranking engine that scores alumni based on how much they give back:
+I wanted to make sure the best alumni get the most visibility. When students search for opportunities, I don't just list them randomly. I built a custom ranking engine that scores alumni based on how much they give back:
 
 `Score = (0.40 × Skill Similarity) + (0.35 × Scaled Contribution) + (0.25 × Seniority Ratio)`
 
@@ -44,4 +46,4 @@ We wanted to make sure the best alumni get the most visibility. When students se
 *   **AI Integration:** Google Gemini 3.1-Flash-Lite & pdfplumber
 
 ---
-*Thanks for checking out AlumniConnect! We're incredibly proud of what we managed to engineer this weekend.*
+*Thanks for checking out AlumniConnect! I'm incredibly proud of what I managed to engineer this weekend.*
