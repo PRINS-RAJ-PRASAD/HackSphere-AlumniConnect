@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AlumniConnect - Command Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            background: #0a0e17; 
+            color: #e2e8f0; 
+            font-family: 'Inter', sans-serif; 
+            min-height: 100vh;
+        }
+        .navbar { background: #05080f !important; border-bottom: 1px solid rgba(0, 229, 255, 0.2); }
+        .navbar-brand { font-weight: 800; color: #fff; }
+        .navbar-brand span { color: #00e5ff; }
+        
+        .stat-card {
+            background: rgba(16, 24, 39, 0.8);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 229, 255, 0.1);
+            border-color: rgba(0, 229, 255, 0.4);
+        }
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00e5ff 0%, #0077ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+        .terminal-header {
+            font-family: 'JetBrains Mono', monospace;
+            color: #00e5ff;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed rgba(0, 229, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark py-3 mb-5">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand">AlumniConnect <span>Command Center</span></span>
+        <button id="exitAdminBtn" class="btn btn-outline-info btn-sm fw-semibold">Exit System</button>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="terminal-header"><i class="bi bi-terminal"></i> system_analytics_engine.exe</h2>
+    
+    <div id="loadingState" class="text-center py-5">
+        <div class="spinner-border text-info" style="width: 3rem; height: 3rem;" role="status"></div>
+        <p class="mt-3 font-monospace text-info">Connecting to database nodes...</p>
+    </div>
+
+    <div id="analyticsDashboard" class="row g-4 d-none">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valUsers">0</div>
+                <div class="stat-label">Total Network Users</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valStudents">0</div>
+                <div class="stat-label">Active Students</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valAlumni">0</div>
+                <div class="stat-label">Verified Alumni</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valJobs">0</div>
+                <div class="stat-label">Opportunities Posted</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valRequests">0</div>
+                <div class="stat-label">Referrals Requested</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-value" id="valApproved">0</div>
+                <div class="stat-label">Referrals Approved</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_BASE_URL = "http://127.0.0.1:8000";
+    const userRole = localStorage.getItem('user_role');
+
+    // Security Check: Only Admins (or testing users) can view this
+    if (!localStorage.getItem('access_token')) {
+        window.location.href = "index.html";
+    }
+
+    // Number animation function
+    function animateValue(id, start, end, duration) {
+        if (start === end) return;
+        let range = end - start;
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        let obj = document.getElementById(id);
+        let timer = setInterval(function() {
+            current += increment;
+            obj.innerHTML = current;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    async function fetchAnalytics() {
+        try {
+            const res = await fetch(`${API_BASE_URL}/admin/analytics`);
+            const data = await res.json();
+
+            if (res.ok) {
+                document.getElementById('loadingState').classList.add('d-none');
+                document.getElementById('analyticsDashboard').classList.remove('d-none');
+
+                const m = data.metrics;
+                animateValue("valUsers", 0, m.total_users, 1000);
+                animateValue("valStudents", 0, m.total_students, 1000);
+                animateValue("valAlumni", 0, m.total_alumni, 1000);
+                animateValue("valJobs", 0, m.total_jobs, 1000);
+                animateValue("valRequests", 0, m.total_requests, 1000);
+                animateValue("valApproved", 0, m.approved_requests, 1000);
+            }
+        } catch (error) {
+            alert("Failed to load analytics engine.");
+        }
+    }
+
+    document.getElementById('exitAdminBtn').addEventListener('click', () => {
+        window.location.href = "dashboard.html";
+    });
+
+    // Boot up
+    fetchAnalytics();
+</script>
+</body>
+</html>

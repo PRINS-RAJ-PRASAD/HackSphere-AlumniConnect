@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect - Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #0a1128, #1c2541, #3a506b); background-size: 200% 200%; animation: gradientBG 15s ease infinite; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Segoe UI', system-ui, sans-serif; color: #ffffff; margin: 0; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass-container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); width: 100%; max-width: 450px; }
+        .brand-logo { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 1.5rem; color: #ffffff; letter-spacing: -0.5px; }
+        .brand-logo span { color: #00e5ff; }
+        .nav-tabs { border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem; }
+        .nav-tabs .nav-link { color: rgba(255, 255, 255, 0.6); border: none; font-weight: 500; transition: all 0.3s ease; background: transparent; }
+        .nav-tabs .nav-link:hover { color: #ffffff; }
+        .nav-tabs .nav-link.active { color: #00e5ff; border-bottom: 2px solid #00e5ff; }
+        .form-control { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; border-radius: 0.5rem; padding: 0.75rem 1rem; }
+        .form-control:focus { background: rgba(255, 255, 255, 0.1); border-color: #00e5ff; color: #ffffff; box-shadow: 0 0 0 0.25rem rgba(0, 229, 255, 0.25); }
+        .form-control::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .btn-primary { background: linear-gradient(90deg, #00b4d8, #00e5ff); border: none; color: #0a1128; font-weight: 600; border-radius: 0.5rem; padding: 0.75rem; transition: transform 0.2s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4); color: #0a1128; }
+        .form-label { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.25rem; color: rgba(255, 255, 255, 0.9); }
+        .forgot-link { font-size: 0.85rem; color: #00e5ff; text-decoration: none; transition: color 0.2s; }
+        .forgot-link:hover { color: #ffffff; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <div class="brand-logo">Alumni<span>Connect</span></div>
+        
+        <ul class="nav nav-tabs justify-content-center" id="authTabs" role="tablist">
+            <li class="nav-item"><button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane" type="button">Login</button></li>
+            <li class="nav-item"><button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-pane" type="button">Join Network</button></li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- LOGIN TAB -->
+            <div class="tab-pane fade show active" id="login-pane">
+                <div id="loginAlert" class="alert d-none" role="alert"></div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">NIT JSR Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="e.g. 2025UGCS034@nitjsr.ac.in" required>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label">Password</label>
+                            <a href="#" id="forgotPasswordBtn" class="forgot-link">Forgot Password?</a>
+                        </div>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="d-grid"><button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button></div>
+                </form>
+            </div>
+
+            <!-- REGISTER TAB (Magic Fields) -->
+            <div class="tab-pane fade" id="register-pane">
+                <div id="registerAlert" class="alert d-none" role="alert"></div>
+                <form id="registerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="regFullName" placeholder="John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">NIT JSR Email Address</label>
+                        <input type="email" class="form-control" id="regEmail" placeholder="e.g. 2025UGCM012@nitjsr.ac.in" required>
+                        <div class="form-text text-light opacity-75 small">Department & Role auto-verified via email.</div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="regPassword" placeholder="Minimum 6 characters" required minlength="6">
+                    </div>
+                    <div class="d-grid"><button type="submit" class="btn btn-primary" id="registerBtn">Create Account</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
